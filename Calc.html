@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    body {
+        background-color: #D3D3D3;  
+    }
+    #parent {
+        margin: auto;
+        width: 300px;
+    }
+    .screen{
+        height: 50px;
+        width: 270px;
+        margin-left: 20px;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .but{
+        height: 50px;
+        width: 50px;
+        margin-left: 20px;
+        margin-top: 20px; 
+        line-height: 50px;
+        font-weight: bold;
+        border-radius: 5px;
+    }
+    .but:active{
+        background-color:grey;
+    }
+
+</style>
+</head>
+<body>
+
+<div id="parent">
+    <input type="text" class="screen" id="display" disabled> </input>
+    <button class="but" onclick="display.value += '1'">1</button>
+    <button class="but" onclick="display.value += '2'">2</button>
+    <button class="but" onclick="display.value += '3'">3</button>
+    <button class="but" onclick="display.value += '+'">+</button>
+    <button class="but" onclick="display.value += '4'">4</button>
+    <button class="but" onclick="display.value += '5'">5</button>
+    <button class="but" onclick="display.value += '6'">6</button>
+    <button class="but" onclick="display.value += '-'">-</button>
+    <button class="but" onclick="display.value += '7'">7</button>
+    <button class="but" onclick="display.value += '8'">8</button>
+    <button class="but" onclick="display.value += '9'">9</button>
+    <button class="but" onclick="display.value += '*'">*</button>
+    <button class="but" onclick="del()">C</button>
+    <button class="but" onclick="display.value += '0'">0</button>
+    <button class="but" onclick="display.value += '.'">.</button>
+    <button class="but" onclick="display.value += '/'">/</button>
+    <button class="but" style="width: 271px;" onclick="eq()">=</button>
+</div>
+
+<script>
+    function eq(){
+        display.value = Math.round(eval(display.value) * 10000000) / 10000000;
+
+        //if(display.value == 'undefined') display.value = '';
+    }
+    function del(){
+        if(display.value != 'Infinity' && display.value != 'undefined' && display.value != 'NaN'){
+            display.value = display.value.substring(0, display.value.length - 1);
+        }
+    }
+    document.onkeydown = function(event) {
+        var b = event.key;
+        console.log(b);
+        if(b >= '0' && b <= '9'){
+            display.value += b;
+        }
+        else if(b >= '*' && b <= '/'){
+            display.value += b;
+        }
+        else if(b == '=' || b == 'Enter'){
+            eq();
+        }
+        else if(b == 'Backspace'){
+            display.value = '';
+        }
+    }
+</script>
+
+</body>
+</html>
